@@ -169,15 +169,15 @@ To test an error (commented out because errors can't be knitted):
 #Error in quadratic_fit("Cenada") : There is no country named Cenada in the Gapminder dataframe
 ```
 
-### Suggesting Country Names
+### Suggesting country names
 
-We have some useful error messages. But what about making the error message possibly even predictive? Let's improve the error message above, by suggesting a country name (like in Google search). For example, we want our error message to be: "There is no country named Cenada in the Gapminder dataframe, did you mean Canada?"
+In the above quadratic regression function, we have some useful error messages. But what about making the error message possibly even predictive? Let's try to improve by suggesting a country name (like in Google search). For example, we want our error message to be: "There is no country named Cenada in the Gapminder dataframe, did you mean Canada?"
 
 For the suggestion part, the strategy is to take the user-inputted string, and separate it into its letters. Then we shall find all the country names with the same length, and separate those into letters. Then we can compare how many letters match, and choose the country in the gapminder dataframe with the most letters matching as the returned suggestion to the user.
 
 To separate out the letters we have the following code:
 ```{r}
-country_choice <- "Csdfzq"
+country_choice <- "Canada"
 (split_letters <- str_split(country_choice, pattern = "")[[1]])
 ```
 
@@ -249,12 +249,19 @@ if (length(matching_letters) > 0){
   for (i in 1:length(how_many_letters$Country)){
     matching_letters[i] = sum(how_many_letters$Country[[i]] == split_letters)
   }
+  if (max(matching_letters) == length(split_letters)) {
+    str_c(country_choice, "is a country in the gapminder dataframe.", sep = " ")
+  }
+  else{
   countries <- mutate(countries_with_same_length, Max = (matching_letters == max(matching_letters))) %>% 
     filter(Max == TRUE) 
  
   #in case there exists more than one country with the same 
   #number of matching letters, we choose the first one:
+  
   str_c("There is no country named", country_choice, "in the Gapminder dataframe. Did you mean", ... =       as.character(countries$Country[1]), "?", sep = " ")
+  }
+  
 }
 else {
   str_c("There is no country named", country_choice, "in the Gapminder dataframe. I don't have any suggestions for you.", sep = " ")
@@ -266,12 +273,13 @@ else {
 Now we check different inputs. Two caveats are that it IS case-sensitive, which is not ideal, and also sensitive to the number of letters of the user input. We leave these things for future improvements :)
 ```{r}
 check_country_name("Kanada")
+check_country_name("Canada")
 check_country_name("Ssdlkldf")
 check_country_name("f")
 check_country_name("Sldkfjssdfdjfkdjfklkdjf")
 ```
 
-Now we can 
+
 
 ## 5. Work with a list
 

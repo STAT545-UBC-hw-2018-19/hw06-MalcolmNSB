@@ -23,7 +23,7 @@ suppressPackageStartupMessages(library(scales))
 ## 2. Writing Functions
 
 
-
+### Quadratic regression for population of a country
 In this section, the goal is to write a function for the gapminder dataframe that returns a quadratic regression of population versus year for a specified country. The following is based on the tutorial from [http://stat545.com/block012_function-regress-lifeexp-on-year.html](http://stat545.com/block012_function-regress-lifeexp-on-year.html)
 
 
@@ -168,6 +168,8 @@ To test an error (commented out because errors can't be knitted):
 
 #Error in quadratic_fit("Cenada") : There is no country named Cenada in the Gapminder dataframe
 ```
+
+### Suggesting Country Names
 
 We have some useful error messages. But what about making the error message possibly even predictive? Let's improve the error message above, by suggesting a country name (like in Google search). For example, we want our error message to be: "There is no country named Cenada in the Gapminder dataframe, did you mean Canada?"
 

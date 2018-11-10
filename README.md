@@ -10,7 +10,7 @@ My repository is structured as follows:
 | [hw06.md](https://github.com/STAT545-UBC-students/hw04-MalcolmNSB/blob/master/hw06.md)   | the markdown file for homework 6   |
 | [hw06.rmd](https://github.com/STAT545-UBC-students/hw04-MalcolmNSB/blob/master/hw06.Rmd) | the R-markdown file for homework 6   |
 | README.md | the file you are reading right now |
-|Other | Other files such a .proj files and .gitignore|
+|Other | Other files such a .Rproj and .gitignore|
 
 
 
